@@ -1,30 +1,26 @@
-# 📚 School Library Management System
+# School Library Management System
 
-[![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3.2-38B2AC.svg)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+A complete, professional frontend for a Ugandan secondary school library management system built with React.js and TailwindCSS.
 
-A complete, professional frontend for a Ugandan secondary school library management system built with **React.js** and **TailwindCSS**.
+## Features
 
-## ✨ Features
+### Core Functionality
+- **Dashboard**: Real-time statistics and quick actions
+- **Authentication**: Secure login with role-based access
+- **Book Management**: Catalog management with search and filters
+- **Circulation**: Check-out, return, and renewal processes
+- **User Management**: Student and teacher profiles
+- **Reports**: Overdue books, popular titles, and usage analytics
+- **Settings**: System configuration and audit logs
 
-### 🎯 Core Functionality
-- **📊 Dashboard**: Real-time statistics and quick actions
-- **🔐 Authentication**: Secure login with role-based access
-- **📖 Book Management**: Catalog management with search and filters
-- **🔄 Circulation**: Check-out, return, and renewal processes
-- **👥 User Management**: Student and teacher profiles
-- **📈 Reports**: Overdue books, popular titles, and usage analytics
-- **⚙️ Settings**: System configuration and audit logs
+### Technical Features
+- **Responsive Design**: Works on desktop, tablet, and mobile
+- **Offline Support**: Local storage for offline viewing
+- **Mock API**: Ready for backend integration
+- **Accessibility**: High contrast, keyboard navigation
+- **Professional UI**: Clean, intuitive interface
 
-### 🛠️ Technical Features
-- **📱 Responsive Design**: Works on desktop, tablet, and mobile
-- **🔌 Offline Support**: Local storage for offline viewing
-- **🎭 Mock API**: Ready for backend integration
-- **♿ Accessibility**: High contrast, keyboard navigation
-- **🎨 Professional UI**: Clean, intuitive interface
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js (v14 or higher)
@@ -32,29 +28,29 @@ A complete, professional frontend for a Ugandan secondary school library managem
 
 ### Installation
 
-1. **Clone the repository:**
-   ```bash
-   git clone <repository-url>
-   cd library-management-system
-   ```
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd library-management-frontend
+```
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+2. Install dependencies:
+```bash
+npm install
+```
 
-3. **Start the development server:**
-   ```bash
-   npm start
-   ```
+3. Start the development server:
+```bash
+npm start
+```
 
-4. **Open [http://localhost:3000](http://localhost:3000) in your browser**
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-### 🔑 Demo Login
-- **Email**: `admin@school.ug`
-- **Password**: `password`
+### Demo Login
+- **Email**: admin@school.ug
+- **Password**: password
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
@@ -75,27 +71,25 @@ src/
 └── assets/              # Static assets
 ```
 
-## 🛠️ Technology Stack
+## Technology Stack
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| **React.js** | 18.2.0 | Frontend Framework |
-| **TailwindCSS** | 3.3.2 | Styling |
-| **React Router DOM** | 6.11.0 | Routing |
-| **Axios** | 1.4.0 | HTTP Client |
-| **Chart.js** | 4.4.0 | Data Visualization |
-| **Create React App** | 5.0.1 | Build Tool |
+- **Frontend Framework**: React.js 18
+- **Styling**: TailwindCSS 3
+- **Routing**: React Router DOM 6
+- **State Management**: React Context API + useReducer
+- **HTTP Client**: Axios
+- **Build Tool**: Create React App
 
-## 📊 Mock Data
+## Mock Data
 
 The application uses mock data for demonstration purposes. All API calls are simulated with realistic delays and responses. The mock data includes:
 
-- 📚 Sample books from Ugandan curriculum
-- 👨‍🎓 Student and teacher profiles
-- 📋 Transaction history
-- 📈 Dashboard statistics
+- Sample books from Ugandan curriculum
+- Student and teacher profiles
+- Transaction history
+- Dashboard statistics
 
-## 🎨 Customization
+## Customization
 
 ### Styling
 - Colors and themes can be customized in `tailwind.config.js`
@@ -110,7 +104,7 @@ The application uses mock data for demonstration purposes. All API calls are sim
 - New pages can be added by creating components in `src/pages/`
 - Navigation is configured in `src/utils/constants.js`
 
-## 🚀 Deployment
+## Deployment
 
 ### Build for Production
 ```bash
@@ -118,14 +112,13 @@ npm run build
 ```
 
 ### Deploy to Static Hosting
-The `build` folder can be deployed to any static hosting service:
+The build folder can be deployed to any static hosting service like:
+- Netlify
+- Vercel
+- GitHub Pages
+- AWS S3
 
-- [Netlify](https://netlify.com/)
-- [Vercel](https://vercel.com/)
-- [GitHub Pages](https://pages.github.com/)
-- [AWS S3](https://aws.amazon.com/s3/)
-
-## 🔌 API Integration
+## API Integration
 
 To connect to a real backend:
 
@@ -134,27 +127,18 @@ To connect to a real backend:
 3. Update authentication flow in `src/context/AuthContext.js`
 4. Configure CORS on your backend server
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-## 📄 License
+## License
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
-## 🆘 Support
+## Support
 
-For support or questions:
-- 📧 Contact the development team
-- 🐛 Create an issue in the repository
-- 📖 Check the documentation
-
----
-
-<div align="center">
-Made with ❤️ for Ugandan Schools
-</div>
+For support or questions, please contact the development team or create an issue in the repository.

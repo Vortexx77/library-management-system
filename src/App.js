@@ -11,8 +11,12 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Books from './pages/Books';
 import Circulation from './pages/Circulation';
+import Reservations from './pages/Reservations';
+import LostBooks from './pages/LostBooks';
 import Activity from './pages/Activity';
 import Users from './pages/Users';
+import SystemUsers from './pages/SystemUsers';
+import Categories from './pages/Categories';
 import Reports from './pages/Reports';
 import Settings from './pages/Settings';
 
@@ -60,6 +64,22 @@ function App() {
                 </ProtectedRoute>
               } />
               
+              <Route path="/reservations" element={
+                <ProtectedRoute>
+                  <Layout>
+                    <Reservations />
+                  </Layout>
+                </ProtectedRoute>
+              } />
+              
+              <Route path="/lost-books" element={
+                <ProtectedRoute>
+                  <Layout>
+                    <LostBooks />
+                  </Layout>
+                </ProtectedRoute>
+              } />
+              
               <Route path="/activity" element={
                 <ProtectedRoute>
                   <Layout>
@@ -72,6 +92,22 @@ function App() {
                 <ProtectedRoute>
                   <Layout>
                     <Users />
+                  </Layout>
+                </ProtectedRoute>
+              } />
+              
+              <Route path="/system-users" element={
+                <ProtectedRoute>
+                  <Layout>
+                    <SystemUsers />
+                  </Layout>
+                </ProtectedRoute>
+              } />
+              
+              <Route path="/categories" element={
+                <ProtectedRoute>
+                  <Layout>
+                    <Categories />
                   </Layout>
                 </ProtectedRoute>
               } />

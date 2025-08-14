@@ -36,9 +36,13 @@ export const LOAN_PERIODS = {
 export const NAVIGATION_ITEMS = [
   { path: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
   { path: '/books', label: 'Books', icon: 'book' },
+  { path: '/categories', label: 'Categories', icon: 'categories' },
   { path: '/circulation', label: 'Circulation', icon: 'circulation' },
+  { path: '/reservations', label: 'Reservations', icon: 'reservations' },
+  { path: '/lost-books', label: 'Lost Books', icon: 'lost' },
   { path: '/activity', label: 'Activity', icon: 'activity' },
   { path: '/users', label: 'Users', icon: 'users' },
+  { path: '/system-users', label: 'System Users', icon: 'system_users' },
   { path: '/reports', label: 'Reports', icon: 'reports' },
   { path: '/settings', label: 'Settings', icon: 'settings' }
 ];

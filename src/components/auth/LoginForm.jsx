@@ -88,6 +88,16 @@ const LoginForm = () => {
                     {/* Glass overlay for additional depth */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/3 to-transparent pointer-events-none"></div>
                     <div className="relative z-10">
+                    {/* Show/Hide Toggle */}
+                    <div className="flex justify-end mb-6">
+                        <button 
+                            className="text-white/70 hover:text-white text-sm transition-colors backdrop-blur-sm bg-white/5 px-3 py-1 rounded-md border border-white/10"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            Show
+                        </button>
+                    </div>
+                    
                     {/* Login Header */}
                     <div className="mb-8">
                         <h2 className="text-4xl font-bold mb-2">Login</h2>
@@ -127,6 +137,16 @@ const LoginForm = () => {
                             />
                         </div>
                         
+                        {/* Forgot Password */}
+                        <div className="text-right">
+                            <button 
+                                type="button"
+                                className="text-white/70 hover:text-white text-sm transition-colors"
+                            >
+                                Forgot Password?
+                            </button>
+                        </div>
+                        
                         {/* Error Message */}
                         {error && (
                             <div className="bg-red-500 bg-opacity-20 border border-red-400 text-red-100 px-4 py-3 rounded-lg">
@@ -146,14 +166,25 @@ const LoginForm = () => {
                                     <span className="ml-2">Logging in...</span>
                                 </div>
                             ) : (
-                                'Login'
+                                'Login to Wifi'
                             )}
                         </button>
                         
+                        {/* Register Link */}
+                        <div className="text-center text-sm">
+                            <span className="text-white/70">Don't have an account? </span>
+                            <button 
+                                type="button"
+                                className="text-white hover:text-white/80 underline transition-colors"
+                            >
+                                Register Now
+                            </button>
+                        </div>
                         
                         {/* Terms and Services */}
                         <div className="text-center text-xs text-white/60 mt-8 space-y-1">
-                            <p>I have a problem? Contact us at thevortexxinfo@gmail.com</p>
+                            <p>Terms and Services</p>
+                            <p>I have a problem? Contact us at support@yourlibrary.edu</p>
                         </div>
                     </form>
                     </div>
