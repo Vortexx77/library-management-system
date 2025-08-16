@@ -5,7 +5,7 @@ import LoadingSpinner from '../common/LoadingSpinner';
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
-        email: '',
+        username: '',
         password: ''
     });
     const [showPassword, setShowPassword] = useState(false);
@@ -53,33 +53,36 @@ const LoginForm = () => {
             
             {/* Main Content */}
             <div className="relative z-10 flex w-full max-w-5xl mx-auto login-panel rounded-2xl overflow-hidden shadow-2xl">
-                {/* Left Panel - White */}
-                <div className="flex-1 bg-white p-8 lg:p-12 flex flex-col justify-between min-h-[600px]">
-                    {/* Logo */}
-                    <div className="flex items-center mb-8">
-                        <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mr-3">
-                            <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
+                {/* Left Panel - Image with Overlay */}
+                <div className="flex-1 bg-white p-2 rounded-l-2xl">
+                    <div className="relative h-full overflow-hidden rounded-xl">
+                        {/* Background Image */}
+                        <img 
+                            src="/images/log1.jpeg" 
+                            alt="Library Students" 
+                            className="absolute inset-0 w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/60"></div>
+
+                        {/* Content Overlay */}
+                        <div className="relative z-10 flex flex-col justify-between h-full p-8 lg:p-12 text-white">
+                            {/* Logo */}
+                            <div className="flex items-center">
+                                <div className="w-16 h-16 rounded-xl flex items-center justify-center mr-4 bg-white/20 p-2 backdrop-blur-sm">
+                                    <img 
+                                        src="/images/Vortexx1.png" 
+                                        alt="Vortexx Logo" 
+                                        className="w-full h-full object-contain"
+                                    />
+                                </div>
+                            </div>
+                            
+                            {/* Footer */}
+                            <div className="text-center text-sm">
+                                <p> {new Date().getFullYear()} Vortexx Libris</p>
+                                <p className="text-white/70">Powered by VORTEXX</p>
+                            </div>
                         </div>
-                        <span className="text-lg font-medium text-gray-700">Logo</span>
-                    </div>
-                    
-                    {/* Center Image */}
-                    <div className="flex-1 flex items-center justify-center py-8">
-                        <div className="w-full max-w-sm h-64 rounded-xl overflow-hidden shadow-lg">
-                            <img 
-                                src="/images/log1.jpeg" 
-                                alt="Library Students" 
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-                    </div>
-                    
-                    {/* Footer */}
-                    <div className="text-center text-sm text-gray-500 mt-8">
-                        <p>© 2025 Your Library Name</p>
-                        <p>Powered by VORTEXX</p>
                     </div>
                 </div>
                 
@@ -88,103 +91,92 @@ const LoginForm = () => {
                     {/* Glass overlay for additional depth */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/3 to-transparent pointer-events-none"></div>
                     <div className="relative z-10">
-                    {/* Show/Hide Toggle */}
-                    <div className="flex justify-end mb-6">
-                        <button 
-                            className="text-white/70 hover:text-white text-sm transition-colors backdrop-blur-sm bg-white/5 px-3 py-1 rounded-md border border-white/10"
-                            onClick={() => setShowPassword(!showPassword)}
-                        >
-                            Show
-                        </button>
-                    </div>
                     
                     {/* Login Header */}
-                    <div className="mb-8">
-                        <h2 className="text-4xl font-bold mb-2">Login</h2>
+                    <div className="mb-12">
+                        <h2 className="text-4xl font-bold mb-3 tracking-tight">Welcome Back</h2>
+                        <p className="text-white/70 text-lg">Sign in to your library account</p>
                     </div>
                     
                     {/* Login Form */}
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-8">
                         {/* Username Field */}
-                        <div>
-                            <label className="block text-sm font-medium mb-3 text-white/90">
+                        <div className="space-y-2">
+                            <label htmlFor="username" className="block font-semibold mb-3 text-white/90 tracking-wide uppercase text-xs">
                                 Username
                             </label>
                             <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
+                                id="username"
+                                type="text"
+                                name="username"
+                                value={formData.username}
                                 onChange={handleChange}
                                 placeholder="Enter your username"
-                                className="w-full px-4 py-3 rounded-lg text-white bg-white/5 backdrop-blur-sm border border-white/10 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/20 focus:border-white/30 transition-all"
+                                className="w-full px-5 py-4 rounded-xl text-white bg-white/5 backdrop-blur-xl border border-white/20 placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/50 focus:bg-white/10 focus:backdrop-blur-2xl transition-all duration-300 text-base shadow-lg shadow-black/10"
                                 required
                             />
                         </div>
                         
                         {/* Password Field */}
-                        <div>
-                            <label className="block text-sm font-medium mb-3 text-white/90">
+                        <div className="space-y-2">
+                            <label htmlFor="password" className="block font-semibold mb-3 text-white/90 tracking-wide uppercase text-xs">
                                 Password
                             </label>
-                            <input
-                                type={showPassword ? 'text' : 'password'}
-                                name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                placeholder="Enter your password"
-                                className="w-full px-4 py-3 rounded-lg text-white bg-white/5 backdrop-blur-sm border border-white/10 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/20 focus:border-white/30 transition-all"
-                                required
-                            />
-                        </div>
-                        
-                        {/* Forgot Password */}
-                        <div className="text-right">
-                            <button 
-                                type="button"
-                                className="text-white/70 hover:text-white text-sm transition-colors"
-                            >
-                                Forgot Password?
-                            </button>
+                            <div className="relative">
+                                <input
+                                    id="password"
+                                    type={showPassword ? 'text' : 'password'}
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    placeholder="Enter your password"
+                                    className="w-full px-5 py-4 pr-12 rounded-xl text-white bg-white/5 backdrop-blur-xl border border-white/20 placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/50 focus:bg-white/10 focus:backdrop-blur-2xl transition-all duration-300 text-base shadow-lg shadow-black/10"
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white/80 transition-colors"
+                                >
+                                    {showPassword ? (
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
+                                        </svg>
+                                    ) : (
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                    )}
+                                </button>
+                            </div>
                         </div>
                         
                         {/* Error Message */}
                         {error && (
-                            <div className="bg-red-500 bg-opacity-20 border border-red-400 text-red-100 px-4 py-3 rounded-lg">
-                                {error}
+                            <div className="bg-red-500/20 backdrop-blur-sm border border-red-400/50 text-red-100 px-5 py-4 rounded-xl flex items-center space-x-3">
+                                <svg className="w-5 h-5 text-red-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                                </svg>
+                                <span className="text-sm">{error}</span>
                             </div>
                         )}
-                        
                         {/* Login Button */}
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className="w-full bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold py-3 px-4 rounded-lg hover:bg-white/20 focus:ring-2 focus:ring-white/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
+                        <div className="pt-4">
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className="w-full bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-xl border border-white/30 text-white font-semibold py-4 px-6 rounded-xl hover:from-white/20 hover:to-white/15 hover:border-white/50 focus:ring-2 focus:ring-white/40 focus:outline-none transform hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-xl shadow-black/20"
+                            >
                             {loading ? (
                                 <div className="flex items-center justify-center">
                                     <LoadingSpinner size="sm" />
                                     <span className="ml-2">Logging in...</span>
                                 </div>
                             ) : (
-                                'Login to Wifi'
+                                'Login'
                             )}
                         </button>
-                        
-                        {/* Register Link */}
-                        <div className="text-center text-sm">
-                            <span className="text-white/70">Don't have an account? </span>
-                            <button 
-                                type="button"
-                                className="text-white hover:text-white/80 underline transition-colors"
-                            >
-                                Register Now
-                            </button>
-                        </div>
-                        
-                        {/* Terms and Services */}
-                        <div className="text-center text-xs text-white/60 mt-8 space-y-1">
-                            <p>Terms and Services</p>
-                            <p>I have a problem? Contact us at support@yourlibrary.edu</p>
                         </div>
                     </form>
                     </div>

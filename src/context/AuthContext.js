@@ -52,71 +52,100 @@ export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
-    // Check for stored auth data on app load
-    const token = localStorage.getItem(STORAGE_KEYS.AUTH_TOKEN);
-    const userData = localStorage.getItem(STORAGE_KEYS.USER_DATA);
-    
-    if (token && userData) {
+    const verifyAuth = async () => {
+      const token = localStorage.getItem(STORAGE_KEYS.AUTH_TOKEN);
+      if (!token) return;
+
       try {
-        const user = JSON.parse(userData);
-        dispatch({
-          type: 'LOGIN_SUCCESS',
-          payload: { user, token }
+        const response = await fetch('http://localhost/library-api/auth/check.php', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
         });
+
+        const data = await response.json();
+
+        if (data.success && data.data.user) {
+          dispatch({
+            type: 'LOGIN_SUCCESS',
+            payload: { user: data.data.user, token },
+          });
+        } else {
+          // Token is invalid or expired, clear storage
+          localStorage.removeItem(STORAGE_KEYS.AUTH_TOKEN);
+          localStorage.removeItem(STORAGE_KEYS.USER_DATA);
+        }
       } catch (error) {
-        // Clear invalid stored data
+        console.error('Session check failed:', error);
+        // Clear storage on error
         localStorage.removeItem(STORAGE_KEYS.AUTH_TOKEN);
         localStorage.removeItem(STORAGE_KEYS.USER_DATA);
       }
-    }
+    };
+
+    verifyAuth();
   }, []);
 
   const login = async (credentials) => {
     dispatch({ type: 'LOGIN_START' });
-    
+
     try {
-      // Mock login delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Validate demo credentials
-      if (credentials.email !== 'admin@school.ug' || credentials.password !== 'password') {
-        throw new Error('Invalid email or password');
+      const response = await fetch('http://localhost/library-api/auth/login.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+      });
+
+      const data = await response.json();
+
+      if (!data.success) {
+        throw new Error(data.message || 'Login failed');
       }
-      
-      // Mock user data
-      const mockUser = {
-        id: '1',
-        email: credentials.email,
-        name: 'Library Administrator',
-        role: 'librarian',
-        permissions: ['read', 'write', 'delete']
-      };
-      
-      const mockToken = 'mock-jwt-token-' + Date.now();
-      
+
+      const { user, token } = data.data;
+
       // Store in localStorage
-      localStorage.setItem(STORAGE_KEYS.AUTH_TOKEN, mockToken);
-      localStorage.setItem(STORAGE_KEYS.USER_DATA, JSON.stringify(mockUser));
-      
+      localStorage.setItem(STORAGE_KEYS.AUTH_TOKEN, token);
+      localStorage.setItem(STORAGE_KEYS.USER_DATA, JSON.stringify(user));
+
       dispatch({
         type: 'LOGIN_SUCCESS',
-        payload: { user: mockUser, token: mockToken }
+        payload: { user, token },
       });
-      
+
       return { success: true };
     } catch (error) {
       dispatch({
         type: 'LOGIN_FAILURE',
-        payload: error.message || 'Login failed'
+        payload: error.message || 'An error occurred during login.',
       });
       return { success: false, error: error.message };
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    const token = localStorage.getItem(STORAGE_KEYS.AUTH_TOKEN);
+
+    // Always clear client-side state first
     localStorage.removeItem(STORAGE_KEYS.AUTH_TOKEN);
     localStorage.removeItem(STORAGE_KEYS.USER_DATA);
     dispatch({ type: 'LOGOUT' });
+
+    if (token) {
+      try {
+        await fetch('http://localhost/library-api/auth/logout.php', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+      } catch (error) {
+        console.error('Logout API call failed:', error);
+      }
+    }
   };
 
   const clearError = () => {
